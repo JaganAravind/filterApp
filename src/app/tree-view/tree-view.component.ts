@@ -39,11 +39,14 @@ public parsedData: any[] = this.data;
 public searchTerm = '';
 
 public onkeyup(value: string): void {
+  console.log('keyup data->', value);
   this.parsedData = this.search(this.data, value);
+  console.log('parsed data->', this.parsedData);
 }
 
 public search(items: any[], term: string): any[] {
   return items.reduce((acc, item) => {
+    console.log('item search->', items);
         if (this.contains(item.text, term)) {
           acc.push(item);
         } else if (item.items && item.items.length > 0) {

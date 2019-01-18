@@ -1,65 +1,51 @@
-<div class="example-config">
-  <div class="row">
-      <div class="col-sm-12 col-md-3">
-          <label><input type="checkbox" [(ngModel)]="showLabels" /> Show Labels </label>
-      </div>
-      <div class="col-sm-12 col-md-3">
-          <label><input type="checkbox" [(ngModel)]="showTicks" /> Show Ticks </label>
-      </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-3">
+            <label><input type="checkbox" [(ngModel)]="showLabels" /> Show Labels </label>
+        </div>
+        <div class="col-sm-12 col-md-3">
+            <label><input type="checkbox" [(ngModel)]="showTicks" /> Show Ticks </label>
+        </div>
 
-      <!-- <div class="col-sm-12 col-md-3">
-          <label> <input type="color" [(ngModel)]="ticksColor" /> Ticks Color</label>
-      </div>
-      <div class="col-sm-12 col-md-3">
-          <label> <input type="color" [(ngModel)]="labelsColor" /> Labels Color</label>
-      </div> -->
-  </div>
-  <hr />
-  <div class="row">
-      <div class="col-sm-12 col-md-4">
-          <label> <input type="number" [(ngModel)]="rangeSize" min="1" max="30" /> Range Size</label>
-      </div>
-      <div class="col-sm-12 col-md-4">
-          <label>
-              <select [(ngModel)]="rangeLineCap">
-                  <option>round</option>
-                  <option>butt</option>
-              </select>
-              Range Line Cap
-          </label>
-      </div>
-      <div class="col-sm-12 col-md-4">
-          <label><input type="color" [(ngModel)]="rangePlaceholderColor" /> Range Placeholder Color</label>
-      </div>
-  </div>
-  <!-- <hr />
-  <div class="row">
-      <div class="col-sm-12 col-md-6">
-          <label> <input type="range" min="-90" max="90" [(ngModel)]="startAngle" style="vertical-align:middle;" />
-              Start angle
-          </label>
-      </div>
-      <div class="col-sm-12 col-md-6">
-          <label><input type="range" min="90" max="270" [(ngModel)]="endAngle"  style="vertical-align:middle;" />
-              End angle
-          </label>
-      </div>
-  </div> -->
-  <hr />
-  <!-- <label><input type="checkbox" [(ngModel)]="reverse" /> Reverse </label> -->
-</div>
-<div class="example-config">
-  <kendo-slider id="value" [min]="0" [max]="100" [smallStep]="10" [(ngModel)]="value"></kendo-slider>
-  <label for="value">Value</label>
-</div>
-<kendo-arcgauge [value]="value" [colors]="colors" [transitions]="false" style="display:block;height:250px;">
-<kendo-arcgauge-scale
-      [majorTicks]="{ visible: showTicks, color: ticksColor }"
-      [minorTicks]="{ visible: showTicks, color: ticksColor }"
-      [rangePlaceholderColor]="rangePlaceholderColor"
-      [rangeSize]="rangeSize"
-      [rangeLineCap]="rangeLineCap">
-  <kendo-arcgauge-scale-labels format="c" [color]="labelsColor" [visible]="showLabels">
-  </kendo-arcgauge-scale-labels>
-</kendo-arcgauge-scale>
-</kendo-arcgauge>
+        <!-- <div class="col-sm-12 col-md-3">
+            <label> <input type="color" [(ngModel)]="ticksColor" /> Ticks Color</label>
+        </div>
+        <div class="col-sm-12 col-md-3">
+            <label> <input type="color" [(ngModel)]="labelsColor" /> Labels Color</label>
+        </div> -->
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <label> <input type="number" [(ngModel)]="rangeSize" min="1" max="30" /> Range Size</label>
+        </div>
+        <!-- <div class="col-sm-12 col-md-6">
+            <label><input type="color" [(ngModel)]="rangePlaceholderColor" /> Range Placeholder Color</label>
+        </div> -->
+    </div>
+    <hr />
+
+    <div class="container">
+        <kendo-slider id="value" [min]="0" [max]="180" [smallStep]="10" [(ngModel)]="value"></kendo-slider>
+        <label for="value">Value</label>
+    </div>
+<kendo-radialgauge [pointer]="[{ value: value }]" [scale]="{ max: 180 }" [transitions]="true" style="display:block;height:250px;">
+  <kendo-radialgauge-scale
+         
+        [max]="180"
+        [majorTicks]="{ visible: showTicks, color: ticksColor }"
+        [minorTicks]="{ visible: showTicks, color: ticksColor }"
+        [rangePlaceholderColor]="rangePlaceholderColor"
+        [rangeSize]="rangeSize">
+    <kendo-radialgauge-scale-labels [color]="labelsColor" [visible]="showLabels">
+    </kendo-radialgauge-scale-labels>
+    <kendo-radialgauge-scale-ranges>
+        <kendo-radialgauge-scale-range [from]="80" [to]="120" color="#ffc700">
+        </kendo-radialgauge-scale-range>
+        <kendo-radialgauge-scale-range [from]="120" [to]="150" color="#ff7a00">
+        </kendo-radialgauge-scale-range>
+        <kendo-radialgauge-scale-range [from]="150" [to]="180" color="#c20000">
+        </kendo-radialgauge-scale-range>
+    </kendo-radialgauge-scale-ranges>
+  </kendo-radialgauge-scale>
+</kendo-radialgauge>

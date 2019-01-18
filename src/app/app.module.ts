@@ -14,6 +14,14 @@ import { TreeViewComponent } from './tree-view/tree-view.component';
 import { TreeViewModule } from '@progress/kendo-angular-treeview';
 import { HeaderComponent } from './header/header.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {SidebarModule} from 'primeng/sidebar';
+import { SampleComponent } from './sample/sample.component';
+import { ButtonModule } from 'primeng/button';
+import {InputTextModule} from 'primeng/inputtext';
+import {CheckboxModule} from 'primeng/checkbox';
+import {RadioButtonModule} from 'primeng/radiobutton';
+import {SliderModule} from 'primeng/slider';
+import {CalendarModule} from 'primeng/calendar';
 
 @NgModule({
   declarations: [
@@ -21,11 +29,19 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     GridComponent,
     GaugesComponent,
     TreeViewComponent,
-    HeaderComponent
+    HeaderComponent,
+    SampleComponent
   ],
   imports: [
     BrowserModule,
+    InputTextModule,
+    CalendarModule,
+    FormsModule,
+    SliderModule,
+    CheckboxModule,
+    RadioButtonModule,
     MDBBootstrapModule.forRoot(),
+    SidebarModule,
     AppRoutingModule,
     TreeViewModule,
     InputsModule,
@@ -33,7 +49,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     MultiSelectModule,
     BrowserAnimationsModule,
     GaugesModule,
-    FormsModule
+    ButtonModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]

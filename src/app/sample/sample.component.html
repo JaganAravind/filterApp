@@ -1,0 +1,119 @@
+<p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="10000">
+  <div class="container">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate>
+      <div class="ui-g">
+        <div class="ui-g-3"><p style="font-weight:bold">Filter</p></div>
+
+        <div class="ui-g-9">
+          <button
+            pButton
+            type="reset"
+            (click)="visibleSidebar2 = true"
+            label="clear"
+            class="ui-button-secondary"
+          ></button>
+          <button
+            pButton
+            type="button"
+            label="search"
+            (click)="onSubmit(f.value)"
+          ></button>
+        </div>
+      </div>
+      <hr />
+      <div class="ui-inputgroup">
+        <span class="ui-inputgroup-addon"><i class="fa fa-search"></i></span>
+        <input
+          type="text"
+          name="search"
+          [(ngModel)]="search"
+          pInputText
+          placeholder="Search Field"
+        />
+      </div>
+      <hr />
+      <b><p style="font-weight:bold">Project Type</p></b>
+      <div class="ui-g" style="width:250px;margin-bottom:10px">
+        <div class="ui-g-12">
+          <p-checkbox
+            #building
+            name="building"
+            value="residential"
+            label="Residential"
+            [(ngModel)]="selectedBuilding"
+            inputId="res"
+          ></p-checkbox>
+        </div>
+        <div class="ui-g-12">
+          <p-checkbox
+            #building
+            name="building"
+            value="hospital"
+            label="Hospital"
+            [(ngModel)]="selectedBuilding"
+            inputId="hos"
+          ></p-checkbox>
+        </div>
+        <div class="ui-g-12">
+          <p-checkbox
+            #building
+            name="building"
+            value="commercial"
+            label="Commercial"
+            [(ngModel)]="selectedBuilding"
+            inputId="com"
+          ></p-checkbox>
+        </div>
+      </div>
+      Selected data:
+      <span
+        *ngFor="let city of selectedBuilding |'filterBy' : 'te' "
+        style="margin-right:10px"
+        >{{ city }}</span
+      >
+      <hr />
+      <p style="font-weight:bold">Status</p>
+      <div class="ui-g" style="width:250px;margin-bottom:10px">
+        <div class="ui-g-12">
+          <p-radioButton
+            #status
+            name="status"
+            value="open"
+            label="Open"
+            [(ngModel)]="val1"
+            inputId="opt1"
+          ></p-radioButton>
+        </div>
+        <div class="ui-g-12">
+          <p-radioButton
+            #status
+            name="status"
+            value="closed"
+            label="Closed"
+            [(ngModel)]="val1"
+            inputId="opt2"
+          ></p-radioButton>
+        </div>
+      </div>
+      Selected Value = {{ val1 | UPPERCASE }}
+      <hr />
+      <div class="ui-g-12 ui-md-4">
+        <p style="font-weight:bold">Date</p>
+        <p-calendar
+          #date
+          name="date"
+          [(ngModel)]="rangeDates"
+          selectionMode="range"
+          [readonlyInput]="true"
+        ></p-calendar>
+      </div>
+      <br />
+    </form>
+  </div>
+</p-sidebar>
+<button
+  pButton
+  type="button"
+  (click)="visibleSidebar2 = true"
+  icon="pi pi-arrow-left"
+></button>
