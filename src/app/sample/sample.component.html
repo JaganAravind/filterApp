@@ -1,3 +1,30 @@
+<button
+  pButton
+  type="button"
+  (click)="visibleSidebar2 = true"
+  icon="pi pi-arrow-left"
+></button>
+
+<table class="table">
+  <thead>
+    <th>#</th>
+    <th>Project ID</th>
+    <th>Name</th>
+    <th>Created Date</th>
+    <th>Status</th>
+    <th>Project Type</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of projectDetails; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.projectID }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.created_date }}</td>
+      <td>{{ item.status }}</td>
+      <td>{{ item.project_type }}</td>
+    </tr>
+  </tbody>
+</table>
 <p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="10000">
   <div class="container">
     <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate>
@@ -8,7 +35,7 @@
           <button
             pButton
             type="reset"
-            (click)="visibleSidebar2 = true"
+            (click)="visibleSidebar2 = true; pageInit() "
             label="clear"
             class="ui-button-secondary"
           ></button>
@@ -21,7 +48,7 @@
         </div>
       </div>
       <hr />
-      <div class="ui-inputgroup">
+      <!-- <div class="ui-inputgroup">
         <span class="ui-inputgroup-addon"><i class="fa fa-search"></i></span>
         <input
           type="text"
@@ -31,46 +58,45 @@
           placeholder="Search Field"
         />
       </div>
-      <hr />
+      <hr /> -->
       <b><p style="font-weight:bold">Project Type</p></b>
       <div class="ui-g" style="width:250px;margin-bottom:10px">
         <div class="ui-g-12">
           <p-checkbox
-            #building
-            name="building"
+            #project
+            name="project"
             value="residential"
             label="Residential"
-            [(ngModel)]="selectedBuilding"
+            [(ngModel)]="project_type"
             inputId="res"
+            (onChange)="onChangeProjectType(project_type)"
           ></p-checkbox>
         </div>
         <div class="ui-g-12">
           <p-checkbox
-            #building
-            name="building"
+            #project
+            name="project"
             value="hospital"
             label="Hospital"
-            [(ngModel)]="selectedBuilding"
+            [(ngModel)]="project_type"
             inputId="hos"
+            (onChange)="onChangeProjectType(project_type)"
           ></p-checkbox>
         </div>
         <div class="ui-g-12">
           <p-checkbox
-            #building
-            name="building"
+            #project
+            name="project"
             value="commercial"
             label="Commercial"
-            [(ngModel)]="selectedBuilding"
+            [(ngModel)]="project_type"
             inputId="com"
+            (onChange)="onChangeProjectType(project_type)"
           ></p-checkbox>
         </div>
       </div>
       Selected data:
-      <span
-        *ngFor="let city of selectedBuilding |'filterBy' : 'te' "
-        style="margin-right:10px"
-        >{{ city }}</span
-      >
+      <span *ngFor="let city of project_type" style="margin-right:10px"></span>
       <hr />
       <p style="font-weight:bold">Status</p>
       <div class="ui-g" style="width:250px;margin-bottom:10px">
@@ -82,6 +108,7 @@
             label="Open"
             [(ngModel)]="val1"
             inputId="opt1"
+            (onClick)="onChangeStatus(val1)"
           ></p-radioButton>
         </div>
         <div class="ui-g-12">
@@ -92,10 +119,11 @@
             label="Closed"
             [(ngModel)]="val1"
             inputId="opt2"
+            (onClick)="onChangeStatus(val1)"
           ></p-radioButton>
         </div>
       </div>
-      Selected Value = {{ val1 | UPPERCASE }}
+      <!-- Selected Value = {{ val1 }} -->
       <hr />
       <div class="ui-g-12 ui-md-4">
         <p style="font-weight:bold">Date</p>
@@ -103,6 +131,7 @@
           #date
           name="date"
           [(ngModel)]="rangeDates"
+          (onSelect)="onChangeDateRange(rangeDates)"          
           selectionMode="range"
           [readonlyInput]="true"
         ></p-calendar>
@@ -111,9 +140,3 @@
     </form>
   </div>
 </p-sidebar>
-<button
-  pButton
-  type="button"
-  (click)="visibleSidebar2 = true"
-  icon="pi pi-arrow-left"
-></button>
