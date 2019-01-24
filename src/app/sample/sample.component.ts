@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges } from "@angular/core";
 import { exampleProduct } from "../product";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-sample",
@@ -18,9 +19,9 @@ export class SampleComponent implements OnInit {
   ngOnInit() {
     this.pageInit();
   }
-  private pType = null;
-  private pStatus = null;
-  private pDate = null;
+  private project_type = null;
+  private status = null;
+  private date = null;
   applyFilters(param) {
     // this.onChangeProjectDetails();
     const that = this;
@@ -28,24 +29,24 @@ export class SampleComponent implements OnInit {
     let arr = [];
     that.projectDetails = exampleProduct.filter(item => {
       arr = [];
-      if (that.pType !== null && that.pType.length > 0) {
-        if (that.pType.indexOf(item.project_type) > -1) {
+      if (that.project_type !== null && that.project_type.length > 0) {
+        if (that.project_type.indexOf(item.project_type) > -1) {
           arr.push("true");
         } else {
           arr.push("false");
         }
       }
 
-      if (that.pStatus !== null) {
-        if (that.pStatus === item.status) {
+      if (that.status !== null) {
+        if (that.status === item.status) {
           arr.push("true");
         } else {
           arr.push("false");
         }
       }
-      if (that.pDate !== null) {
-        var frmDate = new Date(that.pDate[0]),
-          toDate = new Date(that.pDate[1]),
+      if (that.date !== null) {
+        var frmDate = new Date(that.date[0]),
+          toDate = new Date(that.date[1]),
           actualDate = new Date(item["created_date"]);
         if (actualDate >= frmDate && actualDate <= toDate) {
           arr.push("true");
@@ -59,9 +60,9 @@ export class SampleComponent implements OnInit {
   }
   pageInit() {
     this.projectDetails = exampleProduct;
-    this.pType = null;
-    this.pStatus = null;
-    this.pDate = null;
+    this.project_type = null;
+    this.status = null;
+    this.date = null;
   }
 
   onChangeDateRange($event) {
@@ -75,19 +76,19 @@ export class SampleComponent implements OnInit {
       });
     }
     // this.filter.created_date = arrData;
-    this.pDate = arrData;
+    this.date = arrData;
     // this.onChangeProjectDetails();
   }
 
   onChangeProjectType(type) {
     // console.log("type", type);
-    this.pType = type;
+    this.project_type = type;
     // this.filter.project_type = type; // example: residential
     // this.onChangeProjectDetails();
   }
 
   onChangeStatus(val) {
-    this.pStatus = val;
+    this.status = val;
     //this.filter.status = val;
     // console.log("filter data-->", this.filter.status);
     //this.onChangeProjectDetails();
