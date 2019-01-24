@@ -16,8 +16,8 @@ export class GaugesComponent implements OnInit {
     public showTicks = true;
     public reverse = false;
 
-    public startAngle = -30;
-    public endAngle = 210;
+    // public startAngle = -30;
+    // public endAngle = 210;
     public rangeSize: number;
 
     public rangeLineCap = 'round';

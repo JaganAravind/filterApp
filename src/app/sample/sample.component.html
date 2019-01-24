@@ -27,23 +27,23 @@
 </table>
 <p-sidebar [(visible)]="visibleSidebar2" position="right" [baseZIndex]="10000">
   <div class="container">
-    <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" novalidate>
+    <form #f="ngForm" novalidate>
       <div class="ui-g">
         <div class="ui-g-3"><p style="font-weight:bold">Filter</p></div>
 
         <div class="ui-g-9">
           <button
             pButton
-            type="reset"
-            (click)="visibleSidebar2 = true; pageInit() "
+            type="button"
+            (click)="visibleSidebar2 = true; pageInit(); f.reset()"
             label="clear"
             class="ui-button-secondary"
           ></button>
           <button
             pButton
             type="button"
-            label="search"
-            (click)="onSubmit(f.value)"
+            label="filter"
+            (click)="applyFilters()"
           ></button>
         </div>
       </div>
@@ -95,8 +95,8 @@
           ></p-checkbox>
         </div>
       </div>
-      Selected data:
-      <span *ngFor="let city of project_type" style="margin-right:10px"></span>
+      <!-- Selected data:
+      <span *ngFor="let city of project_type" style="margin-right:10px"></span> -->
       <hr />
       <p style="font-weight:bold">Status</p>
       <div class="ui-g" style="width:250px;margin-bottom:10px">
